@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment: production
     
     steps:
       - name: Checkout code
@@ -26,6 +27,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: jayr4/is373_ai_news:latest
-          context: 
+          tags: jayr4/is373_ai_news:latest, jayr4/is373_ai_news:production
+          context: .
           file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=registry,ref=jayr4/is373_ai_news:cache
+          cache-to: type=inline,mode=max
