@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  web:
+    image: httpd:2.4
+    container_name: is373_ai_news
+    build: .
+    volumes:
+      - ./public_html:/usr/local/apache2/htdocs/
+    ports:
+      - "80:80"
+    restart: always
