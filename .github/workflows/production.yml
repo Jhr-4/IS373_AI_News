@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: jayr4/is373_ai_news:latest, jayr4/is373_ai_news:production
+          tags: jayr4/is373_ai_news:latest
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
