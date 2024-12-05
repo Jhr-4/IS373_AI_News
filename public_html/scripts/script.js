@@ -17,34 +17,10 @@ async function fetchAndDisplay() {
         console.error('Using test data. Error fetching and displaying articles:', error);
         const testData = [
             {
-                "nid": [
-                    {
-                        "value": 2
-                    }
-                ],
-                "created": "2024-12-04T19:38:34+00:00",
-                "title": "AI in Healthcare: Revolutionizing Diagnostics and Treatment Add to Default shortcuts",
-                "field_article_image": [
-                    {
-                        "url": "http://api.currentai.me/sites/default/files/2024-12/Healthcare_AI.webp",
-                        "alt": "Health Care Professional Utilizing AI Technology"
-                    }
-                ]
-            },
-            {
-                "nid": [
-                    {
-                        "value": 1
-                    }
-                ],
-                "created": "2024-12-04T19:31:24+00:00",
-                "title": "Google to Buy Nuclear Power Plants to Supercharge AI: The Future of Energy and Technology Add to Default shortcuts",
-                "field_article_image": [
-                    {
-                        "url": "http://api.currentai.me/sites/default/files/2024-12/AI_with_powerplant.webp.webp",
-                        "alt": "AI-driven energy grid with nuclear power plants in the background"
-                    }
-                ]
+              "nid": [{"value": 2}],
+              "title": [{"value": "AI in Healthcare: Revolutionizing Diagnostics and Treatment Add to Default shortcuts"}],
+              "created": [{"value": "2024-12-05T23:25:53+00:00", "format": "Y-m-d\\TH:i:sP"}],
+              "field_article_image": [{"target_id": 2, "alt": "Health Care Professional Utilizing AI Technology", "title": "", "width": 1024, "height": 1024, "target_type": "file", "target_uuid": "0a948cd0-b30c-45d7-a71d-eaece9b0447a", "url": "http://api.currentai.me/sites/default/files/2024-12/Healthcare_AI_0.webp"}]
             }
         ];
 
@@ -58,8 +34,8 @@ function displayArticles(data) {
     container.innerHTML = '';
 
     data.forEach(article => {
-        const title = article.title || 'No title available';
-        const created = article.created;
+        const title = article.title[0].value || 'No title available';
+        const created = article.created[0].value;
         const imgURL = article.field_article_image[0].url || 'https://picsum.photos/200';
         const imgAlt = article.field_article_image[0].alt || 'Article Image';
         const nid = article.nid[0].value;
