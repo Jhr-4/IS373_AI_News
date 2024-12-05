@@ -19,7 +19,7 @@ async function fetchAndDisplay() {
             {
                 "nid": [
                     {
-                        "value":2
+                        "value": 2
                     }
                 ],
                 "created": "2024-12-04T19:38:34+00:00",
@@ -34,7 +34,7 @@ async function fetchAndDisplay() {
             {
                 "nid": [
                     {
-                        "value":1
+                        "value": 1
                     }
                 ],
                 "created": "2024-12-04T19:31:24+00:00",
@@ -47,7 +47,7 @@ async function fetchAndDisplay() {
                 ]
             }
         ];
-        
+
         // use testData instead
         displayArticles(testData);
     }
