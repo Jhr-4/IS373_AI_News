@@ -1,6 +1,6 @@
 async function fetchAndDisplay() {
     try {
-        const response = await fetch('https://api.currentai.me/rest-recent-articles', {
+        const response = await fetch('https://api.currentai.me/rest/recent-articles', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json' // Ensure response is in JSON format
@@ -66,7 +66,7 @@ function displayArticles(data) {
 
         // Create the card
         const card = document.createElement('a');
-        card.href = `http://localhost:8080/node/${nid}`;
+        card.href = `http://api.currentai.me//node/${nid}`;
         card.classList.add('card', 'card-link');
         card.style.backgroundImage = `url(${imgURL})`;
 
