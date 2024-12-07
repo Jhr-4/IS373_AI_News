@@ -34,7 +34,7 @@ function displayArticles(data) {
     container.innerHTML = '';
 
     const HomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
-    const articlesToDisplay = HomePage ? data.slice(0, 3) : data;
+    const data = HomePage ? data.slice(0, 3) : data;
 
     data.forEach(article => {
         const title = article.title[0].value || 'No title available';
