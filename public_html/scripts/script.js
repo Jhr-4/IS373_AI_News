@@ -1,4 +1,4 @@
-async function fetchAndDisplay() {
+async function fetch() {
     try {
         const response = await fetch('https://api.currentai.me/rest/recent-articles', {
             method: 'GET',
@@ -24,7 +24,7 @@ async function fetchAndDisplay() {
             }
         ];
 
-        // use testData instead
+        // use testData instead if error
         displayArticles(testData);
     }
 }
@@ -32,6 +32,9 @@ async function fetchAndDisplay() {
 function displayArticles(data) {
     const container = document.getElementById('article-container');
     container.innerHTML = '';
+
+    const HomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
+    const articlesToDisplay = HomePage ? data.slice(0, 3) : data;
 
     data.forEach(article => {
         const title = article.title[0].value || 'No title available';
@@ -59,4 +62,4 @@ function displayArticles(data) {
     });
 }
 
-fetchAndDisplay();
+fetch();
