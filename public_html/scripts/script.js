@@ -1,4 +1,4 @@
-async function fetch() {
+async function fetchArticles() {
     try {
         const response = await fetch('https://api.currentai.me/rest/recent-articles', {
             method: 'GET',
@@ -62,4 +62,4 @@ function displayArticles(data) {
     });
 }
 
-fetch();
+fetchArticles();
