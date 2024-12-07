@@ -34,9 +34,9 @@ function displayArticles(data) {
     container.innerHTML = '';
 
     const HomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
-    const data = HomePage ? data.slice(0, 3) : data;
+    const articlesToDisplay = HomePage ? data.slice(0, 3) : data;
 
-    data.forEach(article => {
+    articlesToDisplay.forEach(article => {
         const title = article.title[0].value || 'No title available';
         const created = article.created[0].value;
         const imgURL = article.field_article_image[0].url || 'https://picsum.photos/200';
