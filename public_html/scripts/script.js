@@ -73,7 +73,7 @@ if (!HomePage){
         const alphanumericPattern = /^[a-zA-Z0-9\s]+$/
         const filterValue = filterInput.value.trim();
         const valid = alphanumericPattern.test(filterValue)
-        if (!filterValue || filterValue == "" || !valid){
+        if (!valid){
             console.log("Not Valid Input") //Potentially will be changed to a user pop alert if they have invalid characters
             return
         }
