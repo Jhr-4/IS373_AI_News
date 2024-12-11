@@ -1,6 +1,8 @@
-async function fetchArticles() {
+const HomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
+
+async function fetchArticles(filter = '') {
     try {
-        const response = await fetch('https://api.currentai.me/rest/recent-articles', {
+        const response = await fetch(`https://api.currentai.me/rest/recent-articles?title=${filter}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json' // Ensure response is in JSON format
@@ -12,7 +14,9 @@ async function fetchArticles() {
         }
 
         const data = await response.json(); // Parse JSON response
-        displayArticles(data);
+        const articlesToDisplay = HomePage ? data.slice(0, 3) : data;
+
+        displayArticles(articlesToDisplay);
     } catch (error) {
         console.error('Using test data. Error fetching and displaying articles:', error);
         const testData = [
@@ -33,10 +37,7 @@ function displayArticles(data) {
     const container = document.getElementById('article-container');
     container.innerHTML = '';
 
-    const HomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
-    const articlesToDisplay = HomePage ? data.slice(0, 3) : data;
-
-    articlesToDisplay.forEach(article => {
+    data.forEach(article => {
         const title = article.title[0].value || 'No title available';
         const created = article.created[0].value;
         const imgURL = article.field_article_image[0].url || 'https://picsum.photos/200';
@@ -45,7 +46,7 @@ function displayArticles(data) {
 
         // Create the card
         const card = document.createElement('a');
-        card.href = `http://api.currentai.me//node/${nid}`;
+        card.href = `http://api.currentai.me/node/${nid}`;
         card.classList.add('card', 'card-link');
         card.style.backgroundImage = `url(${imgURL})`;
 
@@ -63,3 +64,20 @@ function displayArticles(data) {
 }
 
 fetchArticles();
+
+if (!HomePage){
+    const filterInput = document.getElementById("filter-textbox")
+    filterInput.addEventListener("change", filterArticles);
+
+    function filterArticles() {
+        const alphanumericPattern = /^[a-zA-Z0-9\s]+$/
+        const filterValue = filterInput.value.trim();
+        const valid = alphanumericPattern.test(filterValue)
+        if (!filterValue || filterValue == "" || !valid){
+            console.log("Not Valid Input") //Potentially will be changed to a user pop alert if they have invalid characters
+            return
+        }
+        const encodedFilter = encodeURIComponent(filterValue)
+        fetchArticles(encodedFilter)
+    }
+}
