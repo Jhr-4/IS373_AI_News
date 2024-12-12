@@ -1,0 +1,130 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url(../media/BG.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #f4f4f4;
+    line-height: 1.6;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    background-color: #222;
+    color: #fff;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding-left: 20px;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav a:hover {
+    border: 2px solid #fff;
+    background-color: #333;
+  }
+  
+  /* Main Article View */
+  .article-view {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .article-title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .article-thumbnail {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    position: relative;
+    background: #252525;
+    height: 200px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  .card-content h3 {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  
+  .article-details {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #ccc;
+  }
+  
+  .article-details p {
+    margin: 5px 0;
+  }
+  
+  .article-body {
+    font-size: 1em;
+    line-height: 1.8;
+    color: #f4f4f4;
+  }
+  
+  .article-body p {
+    margin-bottom: 20px;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    background: #222;
+    padding: 20px;
+    color: #aaa;
+  }
+  
+  .footer h3 {
+    font-size: 1.5em;
+  }
+  
+  .footer a:hover {
+    color: #007BFF;
+  }
+  
