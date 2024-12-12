@@ -1,6 +1,8 @@
-async function fetchAndDisplay() {
+const HomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
+
+async function fetchArticles(filter = '') {
     try {
-        const response = await fetch('https://api.currentai.me/rest/recent-articles', {
+        const response = await fetch(`https://api.currentai.me/rest/recent-articles?title=${filter}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json' // Ensure response is in JSON format
@@ -12,7 +14,9 @@ async function fetchAndDisplay() {
         }
 
         const data = await response.json(); // Parse JSON response
-        displayArticles(data);
+        const articlesToDisplay = HomePage ? data.slice(0, 3) : data;
+
+        displayArticles(articlesToDisplay);
     } catch (error) {
         console.error('Using test data. Error fetching and displaying articles:', error);
         const testData = [
@@ -24,7 +28,7 @@ async function fetchAndDisplay() {
             }
         ];
 
-        // use testData instead
+        // use testData instead if error
         displayArticles(testData);
     }
 }
@@ -42,7 +46,7 @@ function displayArticles(data) {
 
         // Create the card
         const card = document.createElement('a');
-        card.href = `http://api.currentai.me//node/${nid}`;
+        card.href = `http://api.currentai.me/node/${nid}`;
         card.classList.add('card', 'card-link');
         card.style.backgroundImage = `url(${imgURL})`;
 
@@ -59,4 +63,21 @@ function displayArticles(data) {
     });
 }
 
-fetchAndDisplay();
+fetchArticles();
+
+if (!HomePage){
+    const filterInput = document.getElementById("filter-textbox")
+    filterInput.addEventListener("change", filterArticles);
+
+    function filterArticles() {
+        const alphanumericPattern = /^[a-zA-Z0-9\s]+$/
+        const filterValue = filterInput.value.trim();
+        const valid = alphanumericPattern.test(filterValue)
+        if (!valid){
+            console.log("Not Valid Input") //Potentially will be changed to a user pop alert if they have invalid characters
+            return
+        }
+        const encodedFilter = encodeURIComponent(filterValue)
+        fetchArticles(encodedFilter)
+    }
+}
