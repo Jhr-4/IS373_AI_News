@@ -1,3 +1,4 @@
+const currentDomain = window.location.hostname;
 const HomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
 
 async function fetchArticles(filter = '') {
@@ -39,14 +40,14 @@ function displayArticles(data) {
 
     data.forEach(article => {
         const title = article.title[0].value || 'No title available';
-        const created = article.created[0].value;
+        const created = article.created[0].value || 'Not Available';
         const imgURL = article.field_article_image[0].url || 'https://picsum.photos/200';
         const imgAlt = article.field_article_image[0].alt || 'Article Image';
         const nid = article.nid[0].value;
 
         // Create the card
         const card = document.createElement('a');
-        card.href = `http://api.currentai.me/node/${nid}`;
+        card.href = `http://${currentDomain}/va.html?nid=${nid}`;
         card.classList.add('card', 'card-link');
         card.style.backgroundImage = `url(${imgURL})`;
 
@@ -70,7 +71,7 @@ if (!HomePage){
     filterInput.addEventListener("change", filterArticles);
 
     function filterArticles() {
-        const alphanumericPattern = /^[a-zA-Z0-9\s]+$/
+        const alphanumericPattern = /^[a-zA-Z0-9\s]*$/
         const filterValue = filterInput.value.trim();
         const valid = alphanumericPattern.test(filterValue)
         if (!valid){
